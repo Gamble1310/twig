@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block css %}
+    {% endblock css %}
+    {% block js_head %}
+    {% endblock js_head   %}
+</head>
+
+<body>
+  {% block page_body %}
+  {% endblock page_body %}
+  {% block js %}
+
+  <script>
+
+
+// Download a file form a url.
+function Download(url, filename) {
+  // Get file name from url.
+  var xhr = new XMLHttpRequest();
+  xhr.responseType = 'blob';
+  xhr.onload = function() {
+    var a = document.createElement('a');
+    a.href = window.URL.createObjectURL(xhr.response); // xhr.response is a blob
+    a.download = filename; // Set the file name.
+    a.style.display = 'none';
+    document.body.appendChild(a);
+    a.click();
+    delete a;
+  };
+  xhr.open('GET', url);
+  xhr.send();
+}
+
+function Copy(copyText) {
+/* Get the text field */
+
+/* Copy the text inside the text field */
+navigator.clipboard.writeText(copyText);
+
+/* Alert the copied text */
+alert("Copied the text: " + copyText);
+}
+  </script>
+  {% endblock js %}
+</body>
+
+</html>

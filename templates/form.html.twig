@@ -1,0 +1,66 @@
+{% extends "base.html.twig" %}
+
+{% block css %}
+<link rel="stylesheet" href="css\CSS.css">
+{% endblock css %}
+
+{% block page_body %}
+{# CLASSE TUTTO AL CENTRO #}
+
+{# CLASSE FORM DI INSERIMENTI #}
+<div class="containerform">
+  
+  <form method='POST'>
+    {# CLASSE TESTO E BOTTONE FIGO #}
+    <div class="group">      
+      <input type="text" name="testo" required>
+      <span class="highlight"></span>
+      <span class="bar"></span>
+      <label>Text</label>
+    </div>
+    <input type='submit' class="favorite styled" name='submit'>
+
+      
+
+    
+  </form>
+</div>
+<div class="container">
+
+
+  <br><br>
+  {{code}}
+    {% for d in data %}
+    {# CLASSE BACKGROUND GIF #}
+  <div style="
+      background-image:url('{{d.images.original.url}}');
+      " class='gifComponent'>
+      <div class="testi">
+      <h5 class="author">
+          {{ d.title }}
+      </h5>    
+      
+      <h6 class="username">
+          uploaded by {% if d.username %} {{ d.username }} {% else %} ????? {% endif %}
+      </h6>
+
+      
+      <h7 class="date">
+          on {{ d.import_datetime }}
+      </h7>
+  </div>
+  <div class='bottom'>
+      <a onclick="Download('{{d.images.original.url}}', '{{d.username}}')"><img src="icon/download.png" class="icon"></a>
+      <button type="button" class="transparent" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      
+    </button>
+    <a onclick="Copy('{{d.images.original.url}}')"><img src="icon/copy.png" class="icon"></a>
+    <button type="button" class="transparent" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  </div>
+  </div>
+
+    {% endfor %}
+  </div>
+
+
+{% endblock page_body %}
