@@ -6,11 +6,14 @@
 
 {% block page_body %}
 {# CLASSE TUTTO AL CENTRO #}
+<center>
+<h1>SHARE YOUR GIF</h1>
+</center>
 
 {# CLASSE FORM DI INSERIMENTI #}
 <div class="containerform">
   
-  <form method='POST'>
+  <form method='GET' action='index.php?offset=0'>
     {# CLASSE TESTO E BOTTONE FIGO #}
     <div class="group">      
       <input type="text" name="testo" required>
@@ -29,9 +32,10 @@
 
 
   <br><br>
-  {{code}}
+
     {% for d in data %}
     {# CLASSE BACKGROUND GIF #}
+    
   <div style="
       background-image:url('{{d.images.original.url}}');
       " class='gifComponent'>
@@ -49,18 +53,47 @@
           on {{ d.import_datetime }}
       </h7>
   </div>
-  <div class='bottom'>
-      <a onclick="Download('{{d.images.original.url}}', '{{d.username}}')"><img src="icon/download.png" class="icon"></a>
-      <button type="button" class="transparent" data-bs-toggle="modal" data-bs-target="#exampleModal">
-      
-    </button>
-    <a onclick="Copy('{{d.images.original.url}}')"><img src="icon/copy.png" class="icon"></a>
-    <button type="button" class="transparent" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  <div class='functiones'>
+      <a><img src="icon/download.png" class="icon" onclick="Download('{{d.images.original.url}}', '{{d.username}}')"></a>
+    <a><img src="icon/copy.png" class="icon" onclick="Copy('{{d.images.original.url}}')"></a>
+      <div class="container1">
+      <img src="icon/zoom.png" class="icon" onclick="Zoom('{{d.images.original.url}}')">
+    </div>
+  </div> 
+
+  <div id="modal01" class="modal" onclick="this.style.display='none'">
+  <span class="close">&times;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+  <div class="modal-content">
+    <img id="img01" style="max-width:100%">
   </div>
+</div>
+
+<script>
+  function Zoom(element) {  
+  // Create anchor element.
+  var a = document.createElement('a'); 
+    
+  // Set the href property.
+  a.src = element; 
+  // Append the anchor element to the body.
+  document.getElementById("img01").src = a.src;
+  document.getElementById("modal01").style.display = "block";
+}
+</script>
+
   </div>
 
     {% endfor %}
   </div>
-
-
+  <div>
+    <center>
+      <form method="POST" action="index.php?offset={{offset}}&testo={{testo}}">
+      
+      <input type="submit" name="indietro" value="←"class="invisible">
+      {% if data %}
+      <input type="submit" name="avanti" value="→" class="invisible">
+      {% endif %}
+      </form>
+    </center>
+    </div>
 {% endblock page_body %}

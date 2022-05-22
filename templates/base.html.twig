@@ -17,35 +17,32 @@
 
   <script>
 
-
-// Download a file form a url.
-function Download(url, filename) {
-  // Get file name from url.
-  var xhr = new XMLHttpRequest();
-  xhr.responseType = 'blob';
-  xhr.onload = function() {
-    var a = document.createElement('a');
-    a.href = window.URL.createObjectURL(xhr.response); // xhr.response is a blob
-    a.download = filename; // Set the file name.
-    a.style.display = 'none';
-    document.body.appendChild(a);
-    a.click();
-    delete a;
-  };
-  xhr.open('GET', url);
-  xhr.send();
-}
-
-function Copy(copyText) {
-/* Get the text field */
-
-/* Copy the text inside the text field */
-navigator.clipboard.writeText(copyText);
-
-/* Alert the copied text */
-alert("Copied the text: " + copyText);
-}
+      // Download a file form a url.
+      function Download(url, filename) {
+        // Get file name from url.
+        var xhr = new XMLHttpRequest();
+        xhr.responseType = 'blob';
+        xhr.onload = function() {
+          var a = document.createElement('a');
+          a.href = window.URL.createObjectURL(xhr.response); // xhr.response is a blob
+          a.download = filename; // Set the file name.
+          a.style.display = 'none';
+          document.body.appendChild(a);
+          a.click();
+          delete a;
+        };
+        xhr.open('GET', url);
+        xhr.send();
+      }
+      function Copy(copyText) {
+      /* Get the text field */
+      /* Copy the text inside the text field */
+      navigator.clipboard.writeText(copyText);
+      /* Alert the copied text */
+      alert("Copied!");
+      };
   </script>
+
   {% endblock js %}
 </body>
 
