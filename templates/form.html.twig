@@ -89,7 +89,9 @@ document.getElementById("modal01").style.display = "block";
   <div>
     <center>
       <form method="POST" action="index.php?offset={{offset}}&testo={{testo}}">
+      {% if offset != 0 %}
       <input type="submit" name="indietro" value="←"class="invisible">
+      {% endif %}
       {% if data %}
       <input type="submit" name="avanti" value="→" class="invisible">        
       {% endif %}
