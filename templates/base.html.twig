@@ -37,9 +37,9 @@
       function Copy(copyText) {
       /* Get the text field */
       /* Copy the text inside the text field */
-      navigator.clipboard.writeText(copyText);
+      navigator.clipboard.writeText(copyText).then((copyText)=>{alert("Succesfully")}, (copyText)=>{alert("Failed")})
       /* Alert the copied text */
-      alert("Copied!");
+      //alert("Copied!");
       }
   </script>
 
