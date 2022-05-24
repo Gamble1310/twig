@@ -37,7 +37,11 @@
       function Copy(copyText) {
       /* Get the text field */
       /* Copy the text inside the text field */
-      navigator.clipboard.writeText(copyText).then((copyText)=>{alert("Succesfully")}, (copyText)=>{alert("Failed")})
+      navigator.clipboard.writeText(copyText).then(() => {
+      // Alert the user that the action took place.
+      // Nobody likes hidden stuff being done under the hood!
+      alert("Copied to clipboard");
+  });
       /* Alert the copied text */
       //alert("Copied!");
       }
